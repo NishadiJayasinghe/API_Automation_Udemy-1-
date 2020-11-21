@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="APITesting.com.org.apis.WeatherGetRequests">
+      <class name="APITesting.com.org.apis.JsonServerRequest">
         <methods>
-          <include name="Test_08"/>
+          <include name="Test_04"/>
         </methods>
-      </class> <!-- APITesting.com.org.apis.WeatherGetRequests -->
+      </class> <!-- APITesting.com.org.apis.JsonServerRequest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

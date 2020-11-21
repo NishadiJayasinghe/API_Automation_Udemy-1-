@@ -24,10 +24,24 @@ public class JsonServerRequest {
 	}
 	
 	
+	//GET /posts/3
+	
+		//@Test
+		public void Test_02() {
+			
+			Response resp = given().
+					when().
+					get("http://localhost:3000/posts/03");
+		
+			System.out.println(resp.asString());
+		
+		}
+	
+	
 	//POST /posts
 	
 	//@Test
-	public void Test_02() {
+	public void Test_03() {
 	
 	Response resp = given().
 	body(" {\"id\" : \"02\" , "
@@ -44,8 +58,8 @@ public class JsonServerRequest {
 	
 	//POST /posts    ---using post objects
 	
-	@Test
-	public void Test_03() {
+	//@Test
+	public void Test_04() {
 		
 		Posts posts = new Posts();
 		
@@ -62,5 +76,28 @@ public class JsonServerRequest {
 		System.out.println("Response " + resp.asString());
 		
 	}
+	
+	
+	//PUT posts/03
+	
+	@Test
+	public void Test_05() {
+	
+		Posts posts = new Posts();
+		posts.setId("03");
+		posts.setAuthor("Jayasinghe");
+		posts.setTitle("PUT request by object");
+		
+		Response resp = given().
+				when().
+				contentType(ContentType.JSON).
+				body(posts).
+				put("http://localhost:3000/posts/03");
+		
+		System.out.println("Response of PUT Request : " + resp.asString() );
+		
+	}
+	
+	
 
 }
