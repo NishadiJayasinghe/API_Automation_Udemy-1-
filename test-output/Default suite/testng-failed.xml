@@ -5,7 +5,7 @@
     <classes>
       <class name="APITesting.com.org.apis.JsonServerRequest">
         <methods>
-          <include name="Test_04"/>
+          <include name="Test_08"/>
         </methods>
       </class> <!-- APITesting.com.org.apis.JsonServerRequest -->
     </classes>

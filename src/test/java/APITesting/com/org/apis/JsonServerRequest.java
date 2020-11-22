@@ -4,7 +4,9 @@ import org.testng.annotations.Test;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 
+import APITesting.com.org.classes.Info;
 import APITesting.com.org.classes.Posts;
+import APITesting.com.org.classes._posts;
 
 import static com.jayway.restassured.RestAssured.*;
 
@@ -116,7 +118,7 @@ public class JsonServerRequest {
 	
 	//DELETE /posts/03
 	
-	@Test
+	//@Test
 	public void Test_07() {
 		
 		Response resp = given().
@@ -125,6 +127,33 @@ public class JsonServerRequest {
 	
 		System.out.println("Delete request : " + resp.asString());
 	
+	}
+	
+	//Complex post request
+	//POST /posts
+	
+	@Test
+	public void Test_08(){
+		
+		Info info = new Info();
+		info.setEmail("jayanghjej@gmail.com");
+		info.setPhone("12345566");
+		info.setAddress("Sri Lanka");
+		
+		
+		_posts posts = new _posts();
+		posts.setId("02");
+		posts.setTitle("complex posts");
+		posts.setAuthor("vibhavi");
+		posts.setInfo(info);
+		
+		Response resp = given().
+		when().
+		contentType(ContentType.JSON).
+		body(posts).
+		post("http://localhost:3000/posts");
+		
+		System.out.println("Complex post request response : " + resp.asString() );
 	}
 	
 	
