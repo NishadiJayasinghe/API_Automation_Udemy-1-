@@ -80,7 +80,7 @@ public class JsonServerRequest {
 	
 	//PUT posts/03
 	
-	@Test
+	//@Test
 	public void Test_05() {
 	
 		Posts posts = new Posts();
@@ -95,6 +95,22 @@ public class JsonServerRequest {
 				put("http://localhost:3000/posts/03");
 		
 		System.out.println("Response of PUT Request : " + resp.asString() );
+		
+	}
+	
+	
+	//PATCH posts/1
+	
+	@Test
+	public void Test_06() {
+		
+		Response resp = given().
+				body("{ \"author\" : \"Erangika\" } ").
+				when().
+				contentType(ContentType.JSON).
+				patch("http://localhost:3000/posts/03");
+		
+		System.out.println("Patch Updated response : " + resp.asString());
 		
 	}
 	
