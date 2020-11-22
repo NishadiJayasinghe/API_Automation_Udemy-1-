@@ -78,7 +78,7 @@ public class JsonServerRequest {
 	}
 	
 	
-	//PUT posts/03
+	//PUT /posts/03
 	
 	//@Test
 	public void Test_05() {
@@ -99,9 +99,9 @@ public class JsonServerRequest {
 	}
 	
 	
-	//PATCH posts/1
+	//PATCH /posts/1
 	
-	@Test
+	//@Test
 	public void Test_06() {
 		
 		Response resp = given().
@@ -112,6 +112,19 @@ public class JsonServerRequest {
 		
 		System.out.println("Patch Updated response : " + resp.asString());
 		
+	}
+	
+	//DELETE /posts/03
+	
+	@Test
+	public void Test_07() {
+		
+		Response resp = given().
+		when().
+		delete("http://localhost:3000/posts/03");
+	
+		System.out.println("Delete request : " + resp.asString());
+	
 	}
 	
 	
