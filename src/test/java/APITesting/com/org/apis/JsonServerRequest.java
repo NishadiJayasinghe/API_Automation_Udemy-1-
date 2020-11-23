@@ -7,6 +7,9 @@ import com.jayway.restassured.response.Response;
 import APITesting.com.org.classes.Info;
 import APITesting.com.org.classes.Posts;
 import APITesting.com.org.classes._posts;
+import APITesting.com.org.classes.AdvancedExample._Info;
+import APITesting.com.org.classes.AdvancedExample._Posts;
+import static org.hamcrest.Matchers.lessThan;
 
 import static com.jayway.restassured.RestAssured.*;
 
@@ -132,7 +135,7 @@ public class JsonServerRequest {
 	//Complex post request
 	//POST /posts
 	
-	@Test
+	//@Test
 	public void Test_08(){
 		
 		Info info = new Info();
@@ -156,6 +159,69 @@ public class JsonServerRequest {
 		System.out.println("Complex post request response : " + resp.asString() );
 	}
 	
+	//Complex POST request
+	//POST /posts
 	
+	//@Test
+	public void Test_09() {
+		
+		_Info info1 = new _Info();
+		info1.setEmail("Test email 1");
+		info1.setPhone("Test phone 1");
+		info1.setAddress("Test address 1");
+		
+		
+		_Info info2 = new _Info();
+		info2.setEmail("Test email 2");
+		info2.setPhone("Test phone 2");
+		info2.setAddress("Test address 2");
 
+		_Posts posts = new _Posts();
+		posts.setId("2");
+		posts.setTitle("title");
+		posts.setAuthor("Author");
+		posts.setInfo(new _Info[] {info1, info2});
+
+		Response resp = given().
+				when().
+				contentType(ContentType.JSON).
+				body(posts).
+				post("http://localhost:3000/posts");
+		
+		System.out.println("Respnse with cpmplext array request : " + resp.asString());
+		
+		
+	}
+	
+	
+	//Get request calculate response time
+	//GET /posts
+	
+	@Test
+	public void Test_10() {
+		
+		/*Response resp = given().
+				when().
+				get("http://localhost:3000/posts");
+	
+		long time = resp.
+				then().
+				extract().
+				time();
+		
+		System.out.println("Response time is : " + time);
+		*/
+		
+		given().
+		when().
+		get("http://localhost:3000/posts").
+		then().
+		and().
+		time(lessThan(90L));
+			
+	
+	}
+	
+	
+	
 }
